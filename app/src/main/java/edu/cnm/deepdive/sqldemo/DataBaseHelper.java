@@ -105,28 +105,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     return returnList;
   }
 
-//  public boolean find(CustomerModel customerModel) {
-//    SQLiteDatabase db = this.getReadableDatabase();
-//    String queryString = "SELECT " + COLUMN_CUSTOMER_NAME + " FROM " + CUSTOMER_TABLE;
-//    Cursor cursor = db.rawQuery(queryString, null);
-//
-//    if(cursor.moveToFirst()) {
-//      do {
-//        String customerName = cursor.getString(1);
-/*
-TODO how to connect findName below to   
- */
-//        String findName = ;
-//        if (customerName == findName) {
-//          return true;
-//        }
-//
-//      } while (cursor.moveToNext());
-//    }
-//
-//    cursor.close();
-//    db.close();
-//
-//    return false;
-//  }
+public boolean find(CustomerModel customerModel) {
+      String queryString = "SELECT * FROM " + CUSTOMER_TABLE;
+      SQLiteDatabase db = this.getReadableDatabase();
+      Cursor cursor = db.rawQuery(queryString, null);
+
+      StringBuffer buffer = new StringBuffer();
+
+      while (cursor.moveToNext()) {
+        buffer.append("Name " + cursor.getString(1) + "\n");
+      }
+      cursor.close();
+      db.close();
+      return true;
+  };
+
+
 }
